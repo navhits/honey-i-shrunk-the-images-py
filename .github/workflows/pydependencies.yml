@@ -1,4 +1,4 @@
-name: Hello world builder
+name: PyDependency builder
 
 on:
   workflow_dispatch:
