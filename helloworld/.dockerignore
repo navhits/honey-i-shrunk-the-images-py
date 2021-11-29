@@ -2,3 +2,4 @@ Dockerfile
 poetry.lock
 tests
 venv
+.pytest_cache
