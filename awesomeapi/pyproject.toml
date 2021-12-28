@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "awesomeapi"
+version = "0.1.0"
+description = "An awesome API built with FastAPI"
+authors = ["Naveen S <reachme@navs.page>"]
+readme = "README.md"
+exclude = ["awesomeapi/entrypoint.py"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.70.1"
+uvicorn = "^0.16.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
