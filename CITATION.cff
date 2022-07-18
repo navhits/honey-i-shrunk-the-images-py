@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+title: Honey I Shrunk the Images - Python Edition
+message: If you use this repository in your work, please use this citation
+type: software
+authors:
+  - family-names: Naveen
+    given-names: S.
+    country: IN
+    email: naveen2aug@gmail.com
+    orcid: 'https://orcid.org/0000-0002-1194-749X'
+repository-code: https://github.com/navhits/honey-i-shrunk-the-images-py
+repository-artifact: >-
+  https://github.com/navhits?tab=packages&repo_name=honey-i-shrunk-the-images-py
+abstract: ' An experiment to shrink the size of the docker images for Python packages.'
+license: MIT
