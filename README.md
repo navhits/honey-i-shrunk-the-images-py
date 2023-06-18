@@ -1,20 +1,35 @@
-# Honey I shrunk the images - Python edition [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+![Alt text](logo.png)
 
-This is an experiment to shrink the size of the docker images for Python packages. We will take this step by step from simple programs to runnning CLI tools, APIs, and other interesting experiments.
+# Honey I shrunk the images - Python edition [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
+
+An experiment to shrink the size of the docker images for Python packages. We will take this step by step from simple programs to runnning CLI tools, APIs, and other interesting experiments.
+
+This project relies on two python libraries to do what we want.
+
+1. [Pyinstaller](https://www.pyinstaller.org/)
+    a. Pyinstaller helps pack a python project into a distributable folder or a single binary
+    b. The user will not need to have Python installed to run this binary
+    c. However the app still will need certain system libraries
+2. [StaticX](https://staticx.readthedocs.io/)
+    a. StaticX helps pack all dynamic libraries statically with the binary we built with Pyinstaller
+    b. However some run time loaded libraries may go missing. We will need to add them manually
+    c. This can be done by trial and error or knowing what runtime dependency a library has
 
 ## Inspiration
 
-The inspiration came from a casual conversation with by friend [@shibme](https://github.com/shibme). This [blog](https://medium.com/analytics-vidhya/dockerizing-a-rest-api-in-python-less-than-9-mb-and-based-on-scratch-image-ef0ee3ad3f0a) pointed me out to the right direction. And it deserves a lot of appreciation. Well its atleast good to know that I'm not the first one to try this out.
+The inspiration came from a casual conversation with by friend [@shibme](https://github.com/shibme). This [blog](https://medium.com/analytics-vidhya/dockerizing-a-rest-api-in-python-less-than-9-mb-and-based-on-scratch-image-ef0ee3ad3f0a) pointed me out to the right direction. And it deserves a lot of appreciation. Well its atleast good to know that I'm not the first one to try this experiment out.
 
-The [Google Distroless](https://github.com/GoogleContainerTools/distroless) made a lot of sense to use as its very stable and fast. However I wanted to try to build `FROM scratch`!
+The usage of distroless images was popularised over having least dependencies and reduced security risks. Building `FROM scratch` involves us to pack all the dependencies and libraries with the image. This is a tedious task and requires a lot of trial and error. But the end result is a very small image that can be used to run the application.
+
+Applications written in languages like Go enjoys the freedom of running the resulting binary anywhere without any static linking. But Python is a dynamic language and requires a lot of libraries to run. This is where Pyinstaller and StaticX comes in.
 
 ## Downsides
 
-Packing Python packages into a single binary will be slower than usual as it has to unpack itself before execution due to Python's nature. Also its highly possible that some of the python dependencies will rely on system libraries. In such cases we will have to either pack them along or add them to the working directory. This prevents us from having a standard template to build images. But I'm eager to try this.
+Packing Python packages into a single binary will be slower than usual as it has to unpack itself before execution due to Python's nature. Sometimes the libraries loaded at runtime will not be packed with the executable. Which means we need to ensure that we add such libraries with the executable. Pyinstaller provides the ability to pack any data or binary with the executable. While StaticX allows you to link any libraries that may be missed by StaticX. This prevents us from having a standard template to build images. But I'm eager to try this.
 
-## What these experiments will cover?
+## What this experiment will cover?
 
-The experiments will look at the major challenges in packing python packages into binaries and run them in a Scratch container. Basically the binary will be the base image by itself.
+This experiment will look at the major challenges in packing python packages into binaries and run them in a Scratch container.
 
 ## What is Scratch in Docker?
 
@@ -44,4 +59,4 @@ debian                            buster-slim     cad9ce16f840   12 days ago    
 debian                            bullseye-slim   66b2aecdb9f0   12 days ago    80.4MB
 ```
 
-> Note: I don't yet recommend this build types for production. For now feel free to play with and see how we can improve this overtime.
+> Note: I don't yet recommend this build type for production. For now feel free to play with and see how we can improve this overtime.
