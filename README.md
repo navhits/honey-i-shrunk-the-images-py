@@ -59,4 +59,4 @@ debian                            buster-slim     cad9ce16f840   12 days ago    
 debian                            bullseye-slim   66b2aecdb9f0   12 days ago    80.4MB
 ```
 
-> Note: I don't yet recommend this build type for production. For now feel free to play with and see how we can improve this overtime.
+> Note: I don't yet recommend using Python scratch containers in production. It is hard to debug any issues that may occur. For now feel free to play with and see how we can improve this overtime.
