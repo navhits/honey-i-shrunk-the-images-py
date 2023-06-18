@@ -2,7 +2,7 @@
 
 # Honey I shrunk the images - Python edition [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
 
-An experiment to shrink the size of the docker images for Python packages. We will take this step by step from simple programs to runnning CLI tools, APIs, and other interesting experiments.
+An experiment to shrink the size of the Python containers. We will take this step by step from simple programs to runnning CLI tools, APIs, and other interesting experiments.
 
 This project relies on two python libraries to do what we want.
 
