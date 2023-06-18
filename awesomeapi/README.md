@@ -1,3 +1,3 @@
 # AwesomeAPI
 
-An awesome CLI built with [FastAPI](https://fastapi.tiangolo.com/)
+An awesome API built with [FastAPI](https://fastapi.tiangolo.com/)
