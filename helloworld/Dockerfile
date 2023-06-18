@@ -22,3 +22,7 @@ COPY --from=build-env /build/tmp /tmp
 # Specifying an entrypoint means nothing except this command will be executed when the image is run
 # Since this is also a scratch image, we cannot enter the CLI when run as a container
 ENTRYPOINT ["./app"]
+
+LABEL maintainer="dev@navs.page"
+LABEL org.opencontainers.image.source=https://github.com/navhits/honey-i-shrunk-the-images-py
+LABEL org.opencontainers.image.description="An experiment to shrink the size of the Python containers"

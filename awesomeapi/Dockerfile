@@ -20,3 +20,7 @@ ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 EXPOSE 8080
 ENTRYPOINT ["./awesomeapi"]
+
+LABEL maintainer="dev@navs.page"
+LABEL org.opencontainers.image.source=https://github.com/navhits/honey-i-shrunk-the-images-py
+LABEL org.opencontainers.image.description="An experiment to shrink the size of the Python containers"
