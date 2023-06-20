@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "pydependencies"
+name = "pycurl"
 version = "0.1.0"
-description = "A python project with external dependencies"
+description = "A minimal python curl"
 authors = ["Naveen S <reachme@navs.page>"]
 readme = "README.md"
 

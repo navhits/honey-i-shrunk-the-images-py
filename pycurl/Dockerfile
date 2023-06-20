@@ -11,7 +11,7 @@ FROM build as build-env
 RUN pip install .
 RUN pip install pyinstaller
 RUN pip install staticx
-RUN pyinstaller -F pydependencies/pydependencies.py -n binary --clean --strip
+RUN pyinstaller -F pycurl/pycurl.py -n binary --clean --strip
 RUN staticx dist/binary dist/app --strip
 RUN mkdir tmp
 

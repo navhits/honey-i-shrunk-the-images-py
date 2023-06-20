@@ -1,5 +1,5 @@
-from pydependencies import __version__
-from pydependencies.pydependencies import get_data
+from pycurl import __version__
+from pycurl.pycurl import get_data
 
 def test_version():
     assert __version__ == '0.1.0'
