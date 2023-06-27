@@ -1,0 +1,15 @@
+FROM python:3.11-slim as build
+WORKDIR /build
+COPY . /build
+RUN pip install .
+
+
+FROM python:3.11-slim as run
+WORKDIR /build
+COPY --from=build /build /build
+COPY --from=build /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+ENTRYPOINT [ "python", "pycurl/pycurl.py" ]
+
+LABEL maintainer="dev@navs.page"
+LABEL org.opencontainers.image.source=https://github.com/navhits/honey-i-shrunk-the-images-py
+LABEL org.opencontainers.image.description="An experiment to shrink the size of the Python containers"

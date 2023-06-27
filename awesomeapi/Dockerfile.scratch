@@ -1,11 +1,13 @@
-FROM python:3.9-slim as build
-RUN apt-get update && apt-get install build-essential patchelf locales scons curl -y
+FROM python:3.11-slim as build
+RUN apt-get update && apt-get install build-essential patchelf locales scons -y
 WORKDIR /build
 COPY . /build
 
-# No difference at this stage
-FROM build as build-env
+# A special stage for vulnerabilities scanning
+FROM build as dependencies
 RUN pip install .
+
+FROM dependencies as build-env
 RUN pip install pyinstaller
 RUN pip install staticx
 RUN pyinstaller -F awesomeapi/entrypoint.py --name awesomeapi --clean --strip

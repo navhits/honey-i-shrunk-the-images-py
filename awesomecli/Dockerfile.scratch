@@ -1,12 +1,14 @@
-FROM python:3.9-slim as build
+FROM python:3.11-slim as build
 # This time we install locales package as our CLI depends on Click that needs locales to check for UTF-8 support
-RUN apt-get update && apt-get install build-essential patchelf locales scons curl -y
+RUN apt-get update && apt-get install build-essential patchelf locales scons -y
 WORKDIR /build
 COPY . /build
 
-# No difference at this stage
-FROM build as build-env
+# A special stage for vulnerabilities scanning
+FROM build as dependencies
 RUN pip install .
+
+FROM dependencies as build-env
 RUN pip install pyinstaller
 RUN pip install staticx
 RUN pyinstaller -F awesomecli/entrypoint.py --name awesomecli --clean --strip

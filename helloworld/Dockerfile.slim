@@ -1,0 +1,8 @@
+FROM python:3.11-slim
+WORKDIR /build
+COPY . /build
+ENTRYPOINT [ "python", "helloworld/main.py" ]
+
+LABEL maintainer="dev@navs.page"
+LABEL org.opencontainers.image.source=https://github.com/navhits/honey-i-shrunk-the-images-py
+LABEL org.opencontainers.image.description="An experiment to shrink the size of the Python containers"

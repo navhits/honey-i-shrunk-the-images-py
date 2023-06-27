@@ -12,6 +12,9 @@ on:
 jobs:
   awesomecli-image-build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        type: [scratch, alpine, slim]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -30,6 +33,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./awesomecli
-          file: awesomecli/Dockerfile
+          file: awesomecli/Dockerfile.${{ matrix.type }}
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/awesomecli:latest
+          tags: ghcr.io/${{ github.repository_owner }}/awesomecli:${{ matrix.type }}

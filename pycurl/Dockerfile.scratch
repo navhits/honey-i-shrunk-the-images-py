@@ -1,14 +1,16 @@
 # This time we have 3 stages for our build.
 # The base image will install necessary libraries
-FROM python:3.9-slim as build
-RUN apt-get update && apt-get install build-essential patchelf locales scons curl -y
+FROM python:3.11-slim as build
+RUN apt-get update && apt-get install build-essential patchelf locales scons -y
 # Setting the workdir although we don't need it here. But this will help add a file to the workdir that will needed in the next step.
 WORKDIR /build
 COPY . /build
 
-# In this tage we pack and build the binnary
-FROM build as build-env
+# A special stage for vulnerabilities scanning
+FROM build as dependencies
 RUN pip install .
+
+FROM dependencies as build-env
 RUN pip install pyinstaller
 RUN pip install staticx
 RUN pyinstaller -F pycurl/pycurl.py -n binary --clean --strip
